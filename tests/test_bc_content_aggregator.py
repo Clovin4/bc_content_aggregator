@@ -9,6 +9,7 @@ from click.testing import CliRunner
 from bc_content_aggregator import bc_content_aggregator
 from bc_content_aggregator import cli
 
+from src.main import ContentAggregator
 
 @pytest.fixture
 def response():
@@ -35,3 +36,36 @@ def test_command_line_interface():
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
     assert '--help  Show this message and exit.' in help_result.output
+
+def test_add_two_nums():
+    c = ContentAggregator()
+
+    res = c.add(4,5)
+
+    assert res == 9
+
+def test_add_three_nums():
+    c = ContentAggregator()
+
+    res = c.add(4,5,6)
+    
+    assert res == 15
+
+def test_add_many_numbers():
+    s = range(100)
+
+    assert ContentAggregator().add(*s) == 4950
+
+def test_subtract_two_nums():
+    c = ContentAggregator()
+
+    res = c.sub(10,3)
+
+    assert res == 7
+
+def test_mul_two_numbers():
+    c = ContentAggregator()
+
+    res = c.mul(6, 4)
+
+    assert res == 24
