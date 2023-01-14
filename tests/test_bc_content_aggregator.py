@@ -69,3 +69,8 @@ def test_mul_two_numbers():
     res = c.mul(6, 4)
 
     assert res == 24
+
+def test_mul_many_numbers():
+    s = range(1, 10)
+
+    assert ContentAggregator().mul(*s) == 362880
